@@ -1,0 +1,13 @@
+{
+	"title": "The Grand Tour",
+	"seasons":
+	[
+		{
+			"title": "Season 1",
+			"path": "C:\\xampp\\htdocs\\media\\content\\the-grand-tour-s1",
+			"regex": "([0-9])\\w+",
+			"quality": "720p WebRip",
+			"format": "mp4"
+		}
+	]
+}
