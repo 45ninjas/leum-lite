@@ -12,7 +12,7 @@ class Watch
 
 		$this->episode = $this->show->GetEpisode($seasonIndex, $episodeSlug);
 
-		$media->title = "Watch";
+		$media->title = $this->show->title;
 	}
 	function Render()
 	{

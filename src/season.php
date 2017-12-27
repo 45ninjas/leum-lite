@@ -12,7 +12,7 @@ class Season
 	public function GetEpisodes()
 	{
 		$episodes = array();
-		foreach (glob($this->directory . "/*") as $file)
+		foreach (glob("$this->directory/*.$this->format") as $file)
 		{
 			$episode["file"] = $file;
 			
@@ -21,7 +21,7 @@ class Season
 			$episode["title"] = $results[0];
 			$episode["slug"] = $results[0];
 
-			$episode["link"] = "/media/watch/".$this->show->slug."/S".$this->index."/".$episode["slug"];
+			$episode["link"] = WEB_ROOT . "/watch/".$this->show->slug."/S".$this->index."/".$episode["slug"];
 
 			$episodes[] = $episode;
 		}
@@ -37,10 +37,10 @@ class Season
 			if($results[0] == $slug)
 			{
 				$episode["file"] = $file;
-				$episode["src"] = "/media".substr($file, strlen(M_ROOT));
+				$episode["src"] = WEB_ROOT.substr($file, strlen(SYS_ROOT));
 				$episode["title"] = $results[0];
 				$episode["slug"] = $results[0];
-				$episode["link"] = "/media/watch/".$this->show->slug."/S".$this->index."/".$episode["slug"];
+				$episode["link"] = WEB_ROOT . "/watch/".$this->show->slug."/S".$this->index."/".$episode["slug"];
 				return $episode;
 			}
 		}	
