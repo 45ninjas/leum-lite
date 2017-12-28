@@ -2,7 +2,7 @@
 
 require_once "src/show.php";
 
-class Browse
+class browse
 {
 	public $shows;
 	public $singular;
@@ -26,8 +26,8 @@ class Browse
 		<section class="hero is-primary is-bold">
 			<div class="hero-body">
 				<div class="container">
-					<h1 class="title">SAM-PC TV Shows</h1>
-					<h2 class="subtitle">Ask Tom about it.</h2>
+					<h1 class="title"><?php echo SITE_TITLE; ?></h1>
+					<h2 class="subtitle"><?php echo SITE_SUBTITLE; ?></h2>
 				</div>
 			</div>
 		</section>
@@ -52,11 +52,13 @@ class Browse
 	{
 		$show = $this->shows;
 		?>
-		<section class="show-hero hero is-medium is-primary is-bold" style="background-image: url('<?php echo $show->heroImg; ?>');">
+		<section class="hero is-large is-bold show-hero" <?php $this->HeroImage($show); ?>>
 			<div class="hero-body">
 				<div class="container">
 					<h1 class="title"><?php echo $show->title; ?></h1>
-					<h2 class="subtitle"><?php $this->SubTitle(); ?></h2>
+					<figure class="image is-128x128">
+						<img src="<?php echo $show->coverImg ?>">						
+					</figure>
 				</div>
 			</div>
 		</section>
@@ -70,23 +72,18 @@ class Browse
 					<h1 class="subtitle"><?php echo "$season->quality, $season->format"; ?></h1>
 					<hr>
 
-					<ul class="episode-list">
+					<ol class="episode-list">
 					<?php
 						foreach($season->GetEpisodes() as $episode)
 						{
-							echo "<a class=\"button\" href=" . $episode["link"] . "><li>" . $episode["title"] . "</li></a><br>";
+							echo "<li><a href=" . $episode["link"] . ">" . $episode["title"] . "</a></li>";
 						}
 					?>
-					</ul>
+					</ol>
 				</div>
 			</section>
 			<?php
 		}
-	}
-	function SubTitle()
-	{
-		$totalSeasons = count($this->shows->seasons);
-		echo "$totalSeasons Seasons";
 	}
 	function Render()
 	{
@@ -94,6 +91,14 @@ class Browse
 			$this->ListShow();
 		else
 			$this->ListShows();
+	}
+	function HeroImage($show)
+	{
+		if(count($show->heroImgs) > 0)
+		{
+			$hero = $show->heroImgs[array_rand($show->heroImgs)];
+		 	echo "style=\"background-image: url('$hero');\"";
+		}
 	}
 }
  ?>

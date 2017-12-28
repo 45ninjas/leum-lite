@@ -26,7 +26,7 @@ class Show
 	public $slug;
 	public $seasons;
 	public $coverImg;
-	public $heroImg;
+	public $heroImgs;
 
 	public function LoadShow($showName)
 	{
@@ -57,6 +57,7 @@ class Show
 			$season->format = $jSeason->format;
 			$season->show = $this;
 			$season->index = $index + 1;
+			$season->episodeTitles = get_object_vars($jSeason->{'episode titles'}[0]);
 			$seasons[] = $season;
 		}
 		$this->seasons = $seasons;
@@ -64,8 +65,11 @@ class Show
 		if(is_file("$directory/cover.jpg"))
 			$this->coverImg = WebPath("/shows/$showName/cover.jpg");
 
-		if(is_file("$directory/hero.jpg"))
-			$this->heroImg = WebPath("/shows/$showName/hero.jpg");
+		$this->heroImgs = array();
+		foreach (glob("$directory/hero*") as $hero)
+		{
+			$this->heroImgs[] = WebPath("/shows/$showName/".basename($hero));
+		}
 	}
 	public function GetEpisode($season, $episode)
 	{

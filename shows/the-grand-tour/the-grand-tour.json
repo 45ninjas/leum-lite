@@ -5,9 +5,27 @@
 		{
 			"title": "Season 1",
 			"path": "C:\\xampp\\htdocs\\leum-light\\content\\the-grand-tour-s1",
-			"regex": "([0-9])\\w+",
+			"regex": "/(E[0-9])\\w+/",
 			"quality": "720p WebRip",
-			"format": "mp4"
+			"format": "mp4",
+			"episode titles":
+			[
+				{
+					"E01": "The Holy Trinity",
+					"E02": "Operation Desert Stumble",
+					"E03": "Opera, Arts and Donuts",
+					"E04": "Enviro-mental",
+					"E05": "Moroccan Roll",
+					"E06": "Happy Finnish Christmas",
+					"E07": "The Beach (Buggy) Boys – Part 1",
+					"E08": "The Beach (Buggy) Boys – Part 2",
+					"E09": "Berks to the Future",
+					"E10": "Dumb Fight at the O.K. Coral",
+					"E11": "Italian Lessons",
+					"E12": "[censored] to [censored]",
+					"E13": "Past v Future"
+				}
+			]
 		}
 	]
 }

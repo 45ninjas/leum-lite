@@ -8,20 +8,26 @@ class Season
 	public $quality;
 	public $format;
 	public $show;
+	public $episodeTitles;
 
 	public function GetEpisodes()
-	{
+	{	
 		$episodes = array();
+
 		foreach (glob("$this->directory/*.$this->format") as $file)
 		{
 			$episode["file"] = $file;
 			
-			preg_match("/(E[0-9])\w+/", $file, $results);
+			preg_match($this->regex, $file, $results);
 			
-			$episode["title"] = $results[0];
 			$episode["slug"] = $results[0];
 
 			$episode["link"] = WEB_ROOT . "/watch/".$this->show->slug."/S".$this->index."/".$episode["slug"];
+
+			if(isset($this->episodeTitles[$episode["slug"]]))
+				$episode["title"] = $this->episodeTitles[$episode["slug"]];
+			else
+				$episode["title"] = $episode["slug"];
 
 			$episodes[] = $episode;
 		}
@@ -30,20 +36,40 @@ class Season
 
 	public function GetEpisode($slug)
 	{
-		foreach (glob($this->directory . "/*") as $file)
-		{		
-			preg_match("/(E[0-9])\w+/", $file, $results);
+		$glob = glob($this->directory . "/*");
+		$file;
+		for ($i=0; $i < count($glob); $i++)
+		{
+			$file = $glob[$i];
+
+			preg_match($this->regex, $file, $results);
 
 			if($results[0] == $slug)
 			{
 				$episode["file"] = $file;
 				$episode["src"] = WEB_ROOT.substr($file, strlen(SYS_ROOT));
-				$episode["title"] = $results[0];
 				$episode["slug"] = $results[0];
 				$episode["link"] = WEB_ROOT . "/watch/".$this->show->slug."/S".$this->index."/".$episode["slug"];
+
+				if(isset($this->episodeTitles[$episode["slug"]]))
+					$episode["title"] = $this->episodeTitles[$episode["slug"]];
+				else
+					$episode["title"] = $episode["slug"];
+
+				if($i > 0)
+				{
+					preg_match($this->regex, $glob[$i - 1], $results);
+					$episode["previous"] = $results[0];
+				}
+
+				if($i < count($glob) -1)
+				{
+					preg_match($this->regex, $glob[$i + 1], $results);
+					$episode["next"] = $results[0];
+				}
 				return $episode;
 			}
-		}	
+		}
 	}
 }
 ?>

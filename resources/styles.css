@@ -6,6 +6,31 @@ max-width: 16rem;
 .show-hero
 {
 	background-attachment: fixed;
-	/*background-position: center;*/
+	background-repeat: no-repeat;
 	background-size: cover;
+	background-position: center;
+	text-shadow: 2px 2px 8px black;
+}
+
+.show-hero .title
+{
+	color: white;
+}
+
+.player
+{
+	width: 100%;
+	background-color: black;
+	padding: 0;
+}
+
+.player-nav
+{
+	width: 100%;
+	text-align: right;
+}
+
+#page-watch
+{
+	background-color: #2a2a2a;
 }
