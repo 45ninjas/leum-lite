@@ -4,7 +4,7 @@
 	[
 		{
 			"title": "Season 1",
-			"path": "C:\\xampp\\htdocs\\leum-light\\content\\the-grand-tour-s1",
+			"path": "C:\\xampp\\htdocs\\leum-lite\\content\\the-grand-tour-s1",
 			"regex": "/(E[0-9])\\w+/",
 			"quality": "720p WebRip",
 			"format": "mp4",

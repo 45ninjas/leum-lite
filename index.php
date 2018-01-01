@@ -1,5 +1,5 @@
 <?php
-include_once "leum-light.php";
+include_once "leum-lite.php";
 ?>
 
 <!DOCTYPE html>
