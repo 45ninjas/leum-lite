@@ -26,6 +26,23 @@
 					"E13": "Past v Future"
 				}
 			]
+		},
+		{
+			"title": "Season 2",
+			"path": "C:\\xampp\\htdocs\\leum-lite\\content\\the-grand-tour-s2",
+			"regex": "/(E[0-9])\\w+/",
+			"quality": "720p WebRip",
+			"format": "mp4",
+			"episode titles":
+			[
+				{
+					"E01": "Past, Present, or Future",
+					"E02": "The Falls Guys",
+					"E03": "Bah Humbug-atti",
+					"E04": "Unscripted",
+					"E05": "Up, Down and Round the Farm"
+				}
+			]
 		}
 	]
 }
